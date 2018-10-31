@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace FilmStarManagement
 {
-    public partial class Form1 : Form
+    public partial class NewStar : Form
     {
-        public Form1()
+        public NewStar()
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            new NewStar().Show();
         }
     }
 }
