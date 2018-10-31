@@ -8,6 +8,7 @@ namespace FilmStarManagement.DataObjects
 {
     public class MovieStar
     {
+		// banana
         public string Name { get; set; }
         public string NickName { get; set; }
         public double Rating { get; set; }
