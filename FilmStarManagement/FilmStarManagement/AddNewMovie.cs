@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -15,11 +14,15 @@ namespace FilmStarManagement
     {
         private readonly IMovieRepository _movieRepository;
 
-        public AddNewMovie(IMovieRepository movieRepository)
+	    private readonly IStaffProvider _staffProvider;
+
+        public AddNewMovie(IMovieRepository movieRepository, IStaffProvider staffProvider)
         {
             _movieRepository = movieRepository;
+	        _staffProvider = staffProvider;
             InitializeComponent();
         }
+
 
         private void label3_Click(object sender, EventArgs e)
         {
@@ -32,5 +35,10 @@ namespace FilmStarManagement
             movie.Title = textBox1.Text;
             _movieRepository.AddMovie(movie);
         }
-    }
+
+		private void AddNewMovie_Load(object sender, EventArgs e)
+		{
+			chklbStaff.Items.AddRange(_staffProvider.GetSuitableMovieStarsStaffMembers().ToArray());
+		}
+	}
 }

@@ -18,7 +18,7 @@ namespace FilmStarManagement
             Ninject.Bind<IMovieStarRepository>().To<TempMovieStarRepository>();
             Ninject.Bind<IMovieRepository>().To<TempMovieRepository>();
             Ninject.Bind<Form1>().ToSelf();
-
+	        Ninject.Bind<IStaffProvider>().To<TempStaffProvider>();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

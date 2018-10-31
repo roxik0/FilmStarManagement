@@ -15,25 +15,26 @@ namespace FilmStarManagement
     {
         private readonly IMovieStarRepository _movieStarRepository;
         private readonly IMovieRepository _movieRepository;
+	    private IStaffProvider _staffProvider;
 
-        public Form1(IMovieStarRepository movieStarRepository, 
-            IMovieRepository movieRepository) : this()
+	    public Form1(IMovieStarRepository movieStarRepository, 
+            IMovieRepository movieRepository, IStaffProvider staffProvider) : this(staffProvider)
         {
             _movieStarRepository = movieStarRepository;
             _movieRepository = movieRepository;
         }
 
-        public Form1()
+        public Form1(IStaffProvider staffProvider)
         {
-            InitializeComponent();
-           
+	        _staffProvider = staffProvider;
+	        InitializeComponent();
         }
 
 
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new NewStar().Show();
+            new NewStar(_movieStarRepository).Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -52,13 +53,19 @@ namespace FilmStarManagement
 
         private void button4_Click(object sender, EventArgs e)
         {
-            new AddNewMovie(_movieRepository).ShowDialog();
+            new AddNewMovie(_movieRepository, _staffProvider).ShowDialog();
         }
-    }
 
-    public interface IMovieStarRepository
+		private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+		{
+
+		}
+	}
+
+	public interface IMovieStarRepository
     {
         IEnumerable<MovieStar> GetAllStars();
+	    void AddMovieStar(MovieStar movieStar);
     }
 
     public interface IMovieRepository
