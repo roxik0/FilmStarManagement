@@ -33,6 +33,7 @@ namespace FilmStarManagement
         {
             var movie = new Movie();
             movie.Title = textBox1.Text;
+            movie.Staff = chklbStaff.CheckedItems.Cast<MovieStar>();
             _movieRepository.AddMovie(movie);
         }
 

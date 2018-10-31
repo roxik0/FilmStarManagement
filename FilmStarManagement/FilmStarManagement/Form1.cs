@@ -15,26 +15,28 @@ namespace FilmStarManagement
     {
         private readonly IMovieStarRepository _movieStarRepository;
         private readonly IMovieRepository _movieRepository;
-	    private IStaffProvider _staffProvider;
+        private readonly ISkillsRepository _skillsRepository;
+        private IStaffProvider _staffProvider;
 
 	    public Form1(IMovieStarRepository movieStarRepository, 
-            IMovieRepository movieRepository, IStaffProvider staffProvider) : this(staffProvider)
+            IMovieRepository movieRepository, IStaffProvider staffProvider, ISkillsRepository skillsRepository) : this(staffProvider, skillsRepository)
         {
             _movieStarRepository = movieStarRepository;
             _movieRepository = movieRepository;
         }
 
-        public Form1(IStaffProvider staffProvider)
+        public Form1(IStaffProvider staffProvider, ISkillsRepository skillsRepository)
         {
 	        _staffProvider = staffProvider;
-	        InitializeComponent();
+            _skillsRepository = skillsRepository;
+            InitializeComponent();
         }
 
 
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new NewStar(_movieStarRepository).Show();
+            new NewStar(_movieStarRepository, _skillsRepository).Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -61,12 +63,6 @@ namespace FilmStarManagement
 
 		}
 	}
-
-	public interface IMovieStarRepository
-    {
-        IEnumerable<MovieStar> GetAllStars();
-	    void AddMovieStar(MovieStar movieStar);
-    }
 
     public interface IMovieRepository
     {

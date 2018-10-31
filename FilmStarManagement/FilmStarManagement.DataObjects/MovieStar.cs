@@ -23,7 +23,8 @@ namespace FilmStarManagement.DataObjects
 	public class Movie
 	{
 		public string Title { get; set; }
-		public IEnumerable<MovieStar> Staff { get; set; }
+		public IEnumerable<MovieStar> Staff { get; set; } = new List<MovieStar>();
+        public string StaffString => String.Join(" | ", Staff);
 		public double Rating { get; set; }
 		public Guid Id { get; set; }
 	}
