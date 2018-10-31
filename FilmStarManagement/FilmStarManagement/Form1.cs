@@ -49,6 +49,11 @@ namespace FilmStarManagement
             dataGridView1.DataSource = _movieStarRepository.GetAllStars();
             dataGridView1.Columns["Id"].Visible = false;
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            new AddNewMovie(_movieRepository).ShowDialog();
+        }
     }
 
     public interface IMovieStarRepository
@@ -59,5 +64,6 @@ namespace FilmStarManagement
     public interface IMovieRepository
     {
         IEnumerable<Movie> GetAllMovies();
+        void AddMovie(Movie movie);
     }
 }

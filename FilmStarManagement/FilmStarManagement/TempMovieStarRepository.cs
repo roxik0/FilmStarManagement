@@ -3,7 +3,7 @@ using FilmStarManagement.DataObjects;
 
 namespace FilmStarManagement
 {
-    public class TemptMovieStarRepository : IMovieStarRepository
+    public class TempMovieStarRepository : IMovieStarRepository
     {
         public IEnumerable<MovieStar> GetAllStars()
         {

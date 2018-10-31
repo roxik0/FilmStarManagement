@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Ninject;
 
 namespace FilmStarManagement
 {
@@ -13,9 +14,15 @@ namespace FilmStarManagement
         [STAThread]
         static void Main()
         {
+            IKernel Ninject = new StandardKernel();
+            Ninject.Bind<IMovieStarRepository>().To<TempMovieStarRepository>();
+            Ninject.Bind<IMovieRepository>().To<TempMovieRepository>();
+            Ninject.Bind<Form1>().ToSelf();
+
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1(new TemptMovieStarRepository(), new TempMovieRepository()));
+            Application.Run(Ninject.Get<Form1>());
         }
     }
 }
